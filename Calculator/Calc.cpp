@@ -32,11 +32,14 @@ int main(int argc, char** argv)
         notify(vm);
         if(vm.count("help")) {
             std::cout << opts << "\n";
+            std::cout << "Usage: operation(summa/sub) operand1 operand2 (от 2 до 5 включительно)\n";
             exit(0);
         };
         if(additionalParameters.empty() or additionalParameters.size() < 3 or additionalParameters.size() > 5) {
-            std::cerr << "error:operands\n";
-            usage();
+            std::cerr << "missing operands\n";
+            std::cout << opts << "\n";
+            std::cout << "Usage: operation(summa/sub) operand1 operand2 (от 2 до 5 включительно)\n";
+            exit(0);
         } else {
             if(vm["operation"].as<std::string>()=="summa") {
                 int summa = 0;
