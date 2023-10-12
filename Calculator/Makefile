@@ -13,5 +13,5 @@ format:
 	astyle $(PROJECT).cpp
 	
 clean:
-	rm -f $(PROJECT)*.orig
+	rm -f Calc
 

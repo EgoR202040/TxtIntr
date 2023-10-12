@@ -38,7 +38,7 @@ int main(int argc, char** argv)
         if(additionalParameters.empty() or additionalParameters.size() < 3 or additionalParameters.size() > 5) {
             std::cerr << "missing operands\n";
             std::cout << opts << "\n";
-            std::cout << "Usage: operation(summa/sub) operand1 operand2 (от 2 до 5 включительно)\n";
+            std::cout << "Usage: operation(summa/sub) operand1 operand2 (от 3 до 5 включительно)\n";
             exit(0);
         } else {
             if(vm["operation"].as<std::string>()=="summa") {
