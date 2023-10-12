@@ -12,15 +12,11 @@ int main(int argc, char** argv)
 {
     std::string type_operation;
     try {
-        // создание пустой коллекции ПКС
-        po::options_description opts("Allowed options"); // параметр - заголовок справки по коллекции ПКС
-        // добавление параметров в коллекцию ПКС
+        po::options_description opts("Allowed options");
         opts.add_options()
-        ("help,h", "Show help") // парметр-переключатель - имя (длинное и короткое) и текст справки
-        //дальше все параметры со значениями
-        // параметр --first
-        ("operation,o", // имя (длинное)
-         po::value<std::string>(&type_operation), // значение типа std::string, сохраняется дополнительно в переменную s
+        ("help,h", "Show help")
+        ("operation,o",
+         po::value<std::string>(&type_operation),
          "option(summa/sub)");
 
         po::variables_map vm;
