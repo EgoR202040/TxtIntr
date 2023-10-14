@@ -38,17 +38,17 @@ int main(int argc, char** argv)
             exit(0);
         } else {
             if(vm["operation"].as<std::string>()=="summa") {
-                int summa = 0;
+                double summa = 0.0;
                 for(auto e:additionalParameters) {
-                    summa += stoi(e);
+                    summa += stod(e);
                 }
 
                 std::cout <<"Сумма операндов: "<< summa <<std::endl;
             } else {
                 if(vm["operation"].as<std::string>()=="sub") {
-                    int res = stoi(additionalParameters[0]);
+                    double res = stod(additionalParameters[0]);
                     for(int i = 1;i < additionalParameters.size();i++) {
-                        res -= stoi(additionalParameters[i]);
+                        res -= stod(additionalParameters[i]);
                     }
                     std::cout <<"Разность операндов: "<< res <<std::endl;
                 }else{
