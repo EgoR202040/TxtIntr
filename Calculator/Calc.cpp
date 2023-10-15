@@ -31,29 +31,34 @@ int main(int argc, char** argv)
             std::cout << "Usage: operation(summa/sub) operand1 operand2 (от 3 до 5 включительно)\n";
             exit(0);
         };
-        if(additionalParameters.empty() or additionalParameters.size() < 3 or additionalParameters.size() > 5) {
-            std::cerr << "missing operands\n";
+        if(additionalParameters.empty() and vm.count("operation")==0) {
             std::cout << opts << "\n";
             std::cout << "Usage: operation(summa/sub) operand1 operand2 (от 3 до 5 включительно)\n";
-            exit(0);
         } else {
-            if(vm["operation"].as<std::string>()=="summa") {
-                double summa = 0.0;
-                for(auto e:additionalParameters) {
-                    summa += stod(e);
-                }
-
-                std::cout <<"Сумма операндов: "<< summa <<std::endl;
+            if(additionalParameters.size() < 3 or additionalParameters.size() > 5) {
+                std::cerr << "Error with operands\n";
+                std::cout << opts << "\n";
+                std::cout << "Usage: operation(summa/sub) operand1 operand2 (от 3 до 5 включительно)\n";
+                exit(0);
             } else {
-                if(vm["operation"].as<std::string>()=="sub") {
-                    double res = stod(additionalParameters[0]);
-                    for(int i = 1;i < additionalParameters.size();i++) {
-                        res -= stod(additionalParameters[i]);
+                if(vm["operation"].as<std::string>()=="summa") {
+                    double summa = 0.0;
+                    for(auto e:additionalParameters) {
+                        summa += stod(e);
                     }
-                    std::cout <<"Разность операндов: "<< res <<std::endl;
-                }else{
-                    std::cerr << "error: operation not found (use -h for help)" << std::endl;
+
+                    std::cout <<"Сумма операндов: "<< summa <<std::endl;
+                } else {
+                    if(vm["operation"].as<std::string>()=="sub") {
+                        double res = stod(additionalParameters[0]);
+                        for(uint i = 1; i < additionalParameters.size(); i++) {
+                            res -= stod(additionalParameters[i]);
+                        }
+                        std::cout <<"Разность операндов: "<< res <<std::endl;
+                    } else {
+                        std::cerr << "error: operation not found (use -h for help)" << std::endl;
                     }
+                }
             }
         }
     } catch(po::error& e) {
